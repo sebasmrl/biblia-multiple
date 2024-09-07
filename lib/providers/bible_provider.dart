@@ -5,7 +5,7 @@
 
 import 'package:biblia_multiple/domain/entities/bible.dart';
 import 'package:biblia_multiple/helpers/bible_io.dart';
-import 'package:biblia_multiple/shared/bibles_availables.dart';
+import 'package:biblia_multiple/shared/bibles_available.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
@@ -20,20 +20,14 @@ class BibleNotifier extends StateNotifier<Bible>{
   )));
 
 
-  changeBible(String bibleName){
-    
-    bool flag =  false;
-    for (var bible in biblesAvailables) {
-      if(bibleName == bible["name"]){
-        flag = true;
-        break;
-      }
-    }
-    if(!flag) return;
+  changeBible(BiblesEnum bible){
+
+    final index = biblesAvailable.indexWhere((mapa) => mapa.containsValue(bible));
+    final bibleSelected = biblesAvailable[index]["enum"];
 
     state = Bible.fromJson( 
         BibleIO.stringToJson(
-          data: BibleIO.readFileAsString(filename: bibleName, ext: 'json')
+          data: BibleIO.readFileAsString(filename: bibleSelected, ext: 'json')
         )
     );
   }
