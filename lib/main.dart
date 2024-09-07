@@ -21,7 +21,7 @@ class MainApp extends ConsumerWidget {
     final theme = ref.watch(themeNotiferProvider);
 
     return MaterialApp.router(
-      title: 'Flutter Demo',
+      title: 'Biblia Multiple',
       debugShowCheckedModeBanner: false,
       theme: theme.getTheme(),
       routerConfig: appRouter,

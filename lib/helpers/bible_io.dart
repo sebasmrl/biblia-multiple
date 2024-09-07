@@ -48,13 +48,13 @@ class BibleIO{
 
 
 
-  static readFileAsString({String path="assets/files", required String filename, required String ext}){
+  static String readFileAsString({String path="assets/files", required String filename, required String ext}){
       final file = File('$path/$filename.$ext');
       final string = file.readAsStringSync();
       return string;
   }
 
-  static String  stringToJson({required String data}){
+  static Map<String, dynamic>  stringToJson({required String data}){
     final jsonObj =  json.decode(data);
     //print(jsonObj['libros']['Génesis']["1"]["1"]);
     return jsonObj;

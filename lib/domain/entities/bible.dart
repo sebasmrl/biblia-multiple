@@ -6,13 +6,15 @@ class Bible{
 
   const Bible({required this.version , required this.sigle, required this.books});
 
+  //This replace copyWith
   factory Bible.fromJson( Map<String, dynamic> json ){
     return Bible(
-    version: json["version"],
-    sigle: json["sigla"],
-    books: json["libros"]
-  );
+      version: json["version"],
+      sigle: json["sigla"],
+      books: json["libros"]
+    );
   }
+
 
   List<String> getBooksAllNames(){
     return books.keys.toList();
