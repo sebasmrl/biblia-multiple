@@ -23,7 +23,7 @@ class BibleNotifier extends StateNotifier<Bible>{
   changeBible(BiblesEnum bible){
 
     final index = biblesAvailable.indexWhere((mapa) => mapa.containsValue(bible));
-    final bibleSelected = biblesAvailable[index]["enum"];
+    final bibleSelected = biblesAvailable[index]["filename"];
 
     state = Bible.fromJson( 
         BibleIO.stringToJson(
