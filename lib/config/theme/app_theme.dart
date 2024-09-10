@@ -18,16 +18,29 @@ class AppTheme{
     //final  background = ;
     return ThemeData(
       useMaterial3: true,
-      scaffoldBackgroundColor: isDarkMode ? Colors.black : Colors.white,
-      dialogBackgroundColor: isDarkMode ? Colors.black : Colors.white,
+      scaffoldBackgroundColor: isDarkMode ? const Color.fromARGB(255, 19, 19, 34): Colors.white,
+      dialogBackgroundColor: isDarkMode ? const Color.fromARGB(255, 19, 19, 34): Colors.white,
       brightness: isDarkMode ? Brightness.dark: Brightness.light,
       colorSchemeSeed: colorTheme,
       appBarTheme: AppBarTheme(
+        titleTextStyle:  TextStyle( 
+          fontWeight: FontWeight.bold, 
+          fontSize: 21,
+          color: isWhiteMenuText ? Colors.white : Colors.black
+        ),
         backgroundColor: colorTheme, 
         foregroundColor: isWhiteMenuText ? Colors.white : Colors.black
       ),
       drawerTheme: DrawerThemeData(
-        backgroundColor: isDarkMode ? Colors.black : Colors.white
+        backgroundColor: isDarkMode ? const Color.fromARGB(255, 19, 19, 34) : Colors.white
+      ),
+      tabBarTheme: TabBarTheme(
+        labelColor: isWhiteMenuText ? Colors.white : Colors.black,
+        indicatorColor: isWhiteMenuText ? Colors.white : Colors.black,
+        unselectedLabelColor: isWhiteMenuText ? Colors.white70 : Colors.black,
+        labelStyle: const TextStyle( fontWeight: FontWeight.bold, fontSize: 16),
+        unselectedLabelStyle:  const TextStyle( fontWeight: FontWeight.normal),
+
       )
     );
   }

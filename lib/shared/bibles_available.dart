@@ -12,10 +12,10 @@ enum BiblesEnum{
   kingJames,
   modernKingJames
 }
+   // <uses-permission android:name="android.permission.INTERNET"/>
 
 
-
-
+//Options for 
 const List<Map<String, dynamic>> biblesAvailable =  [
     { "name": "Biblia Reina Valera",
       "filename": "reina_valera_1960",

@@ -4,8 +4,18 @@ final appRouter =  GoRouter(
   routes:[
     GoRoute(
       path: '/',
-      name: "home",
+      name: HomeScreen.name,
       builder: (context, state) => const HomeScreen(),
-    )
+    ),
+    GoRoute(
+      path: '/bible-reader',
+      name: BibleReaderScreen.name,
+      builder: (context, state) =>  BibleReaderScreen(),
+    ),
+    GoRoute(
+      path: '/color-selector',
+      name: ColorSelectorScreen.name,
+      builder: (context, state) => const ColorSelectorScreen(),
+    ),
   ]
 );

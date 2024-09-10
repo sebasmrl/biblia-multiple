@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/services.dart';
 
 
 
@@ -7,7 +8,7 @@ class BibleIO{
 
   
 
-  static convertXmlToString({String path="assets/files", required String filename, required String ext}){
+  static convertXmlToString({String path="assets/base", required String filename, required String ext}){
   
     final file = File('$path/$filename.$ext');
     final xmlString = file.readAsStringSync().split('?>')[1];
@@ -39,24 +40,25 @@ class BibleIO{
     return '$textWitoutBreaks } ';
   }
 
-  static void convertStringToFile({required String data, String path='assets/bibles', required String filename, String ext='txt'})async{
+  static void convertStringToFile({required String data, String path='assets/base', required String filename, String ext='txt'})async{
     File file = File('$path/$filename.$ext');
     await file.writeAsString(data);
+
      // ignore: avoid_print
      print('Archivo JSON creado exitosamente.');
   }
 
 
 
-  static String readFileAsString({String path="assets/files", required String filename, required String ext}){
-      final file = File('$path/$filename.$ext');
-      final string = file.readAsStringSync();
-      return string;
+  static Future<String> readFileAsString({String path="assets/base", required String filename, required String ext})async{
+      //final file = File('$path/$filename.$ext');
+      //final string = file.readAsStringSync();
+    final String response = await rootBundle .loadString('$path/$filename.$ext');
+    return response;
   }
 
   static Map<String, dynamic>  stringToJson({required String data}){
-    final jsonObj =  json.decode(data);
-    //print(jsonObj['libros']['Génesis']["1"]["1"]);
+    final jsonObj =  json.decode(data);  //print(jsonObj['libros']['Génesis']["1"]["1"]);
     return jsonObj;
   } 
 
