@@ -1,7 +1,6 @@
 import 'package:biblia_multiple/providers/bible_options_selected_provider.dart';
 import 'package:biblia_multiple/providers/bible_provider.dart';
 import 'package:biblia_multiple/providers/theme_provider.dart';
-import 'package:biblia_multiple/shared/bible_versions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
