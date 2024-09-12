@@ -29,7 +29,6 @@ class BibleReaderScreen extends ConsumerWidget{
     final book = bible.getBook(options.book);
     
 
-
       return DefaultTabController(
         initialIndex: options.chapter-1,
         length: book.length,
@@ -57,7 +56,9 @@ class BibleReaderScreen extends ConsumerWidget{
                 padding: EdgeInsets.zero, 
                 labelPadding: const EdgeInsets.only(right: 20, left: 20),
                 indicatorWeight: 1,
-                
+                onTap: (value){
+                  ref.watch(bibleOptionsSelectedNotifierProvider.notifier).changeChapter(value+1);
+                },
                 tabs: [
                   ...book.keys.map( (value)=> Tab(
                       //icon: const Icon(Icons.cloud_outlined),
@@ -71,7 +72,19 @@ class BibleReaderScreen extends ConsumerWidget{
             
             body: TabBarView(
               children: [
-                ...book.keys.map( (value)=>ListView.builder( //map de capitulos
+                ...book.keys.map( (value){
+                  
+                  final ScrollController scrollController = ScrollController();
+
+                  
+                  scrollController.addListener((){
+                    // if(scrollController.position.pixels ==0) ref.read(bibleOptionsSelectedNotifierProvider.notifier).changeChapter(int.parse(value));
+                    if(int.parse(value)==options.chapter) return;
+                    ref.read(bibleOptionsSelectedNotifierProvider.notifier).changeChapter(int.parse(value));
+                  });
+                  
+                  return ListView.builder( //map de capitulos
+                  controller: scrollController,
                   itemBuilder: (context, index){ //map de versiculos 
                    final verse =  bible.getCite(bookName: options.book, chapterIndex:int.parse(value), verseIndex:index+1);
           
@@ -87,8 +100,8 @@ class BibleReaderScreen extends ConsumerWidget{
                   },
                   itemCount: book[value].length,
                   
-                ))
-                 
+                  );}
+                )                 
               ],
             ),
           ),

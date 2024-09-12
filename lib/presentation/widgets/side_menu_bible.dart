@@ -28,8 +28,10 @@ class SideMenuBible extends ConsumerWidget {
     return NavigationDrawer(
         onDestinationSelected: (value){
           //segun los libros del testamento seleccionar por indice
-          ref.read(bibleOptionsSelectedNotifierProvider.notifier).changeBook( bookNames[value] );
-
+          ref.read(bibleOptionsSelectedNotifierProvider.notifier)
+            ..changeBook( bookNames[value] )
+            ..changeChapter(1);
+          
 
           Future<void>.delayed(const Duration(milliseconds: 60), (){
             final TabController tabController = DefaultTabController.of(context);
