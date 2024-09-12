@@ -3,6 +3,7 @@ import 'package:biblia_multiple/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class ColorSelectorScreen extends ConsumerWidget {
   const ColorSelectorScreen({super.key});
@@ -24,7 +25,7 @@ class ColorSelectorScreen extends ConsumerWidget {
           )
         ),
         leading:  IconButton(
-            onPressed: (){}, 
+            onPressed: ()=>context.pop(), 
             icon: const Icon(Icons.arrow_back_rounded)
         ),
         actions: [

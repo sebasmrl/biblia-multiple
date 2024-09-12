@@ -33,7 +33,7 @@ class BibleNotifier extends StateNotifier<Bible>{
 
   void _initBibleFromPreferences(BiblesEnum bible)async{
 
-    // TODO: Get bibleSelected from localDatabe 
+    // TODO: Get bibleSelected from localDatabase 
     await changeBible(bible);
 
   }
