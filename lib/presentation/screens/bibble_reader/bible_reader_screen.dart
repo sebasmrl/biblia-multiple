@@ -3,6 +3,7 @@ import 'package:biblia_multiple/presentation/screens/bible_version_choose/bible_
 import 'package:biblia_multiple/presentation/widgets/side_menu_bible.dart';
 import 'package:biblia_multiple/providers/bible_options_selected_provider.dart';
 import 'package:biblia_multiple/providers/bible_provider.dart';
+import 'package:biblia_multiple/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -19,14 +20,12 @@ class BibleReaderScreen extends ConsumerWidget{
 
   @override
   Widget build(BuildContext context, ref) {
-    
+    final theme = ref.watch(themeNotiferProvider);
     final options = ref.watch(bibleOptionsSelectedNotifierProvider);
     final bible = ref.watch(bibleNotifierProvider);
 
     final book = bible.getBook(options.book);
-    //final chapter = bible.getChapter(book: book, chapter: options.chapter); //siempre agarra lo del primero que se hace porque viene de options
-
-    //final TabController tabController = DefaultTabController.of(context);
+    
 
 
       return DefaultTabController(
@@ -39,7 +38,11 @@ class BibleReaderScreen extends ConsumerWidget{
               title:  Text(options.book),
               actions: [ 
                 TextButton.icon(
-                  label: Text(bible.acronym),
+                  label: Text(bible.acronym,),
+                  style: ButtonStyle(
+                    iconColor: WidgetStatePropertyAll(theme.isWhiteMenuText ? Colors.white : Colors.black),
+                    foregroundColor: WidgetStatePropertyAll(theme.isWhiteMenuText ? Colors.white : Colors.black),
+                  ),
                   onPressed: (){
                   context.pushNamed(BibleVersionChooseScreen.name);
                 }, 

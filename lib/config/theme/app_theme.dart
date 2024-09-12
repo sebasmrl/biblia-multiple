@@ -26,6 +26,7 @@ class AppTheme{
       brightness: isDarkMode ? Brightness.dark: Brightness.light,
       colorSchemeSeed: colorTheme,
       appBarTheme: AppBarTheme(
+        actionsIconTheme: IconThemeData(color: isWhiteMenuText ? Colors.white: Colors.black, ),
         titleTextStyle:  TextStyle( 
           fontWeight: FontWeight.bold, 
           fontSize: 21,
