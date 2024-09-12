@@ -7,6 +7,8 @@ import 'package:biblia_multiple/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:animate_do/animate_do.dart';
+
 
 
 class BibleReaderScreen extends ConsumerWidget{
@@ -75,7 +77,7 @@ class BibleReaderScreen extends ConsumerWidget{
           
                     if(verse.trim().isEmpty) return  SizedBox(height: (index == book[value].length) ? 100 :0); //para versiculos vacios
                     return ListTile(
-                      title: Text(' ${index+1}.$verse', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),),
+                      title: FadeIn(child: Text(' ${index+1}.$verse', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),)),
                       contentPadding: EdgeInsets.fromLTRB(15, 3, 15, (index == book[value].length) ? 130:0),
                       visualDensity: const VisualDensity(vertical: -4),
                       style: ListTileStyle.list,
