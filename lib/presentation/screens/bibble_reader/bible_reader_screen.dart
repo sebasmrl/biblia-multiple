@@ -70,7 +70,7 @@ class BibleReaderScreen extends ConsumerWidget{
                   itemBuilder: (context, index){ //map de versiculos 
                    final verse =  bible.getCite(bookName: options.book, chapterIndex:int.parse(value), verseIndex:index+1);
           
-                    if(verse.isEmpty) return  SizedBox(height: (index == book[value].length) ? 100 :0); //para versiculos vacios
+                    if(verse.trim().isEmpty) return  SizedBox(height: (index == book[value].length) ? 100 :0); //para versiculos vacios
                     return ListTile(
                       title: Text(' ${index+1}.$verse', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),),
                       contentPadding: EdgeInsets.fromLTRB(15, 3, 15, (index == book[value].length) ? 130:0),
@@ -94,18 +94,3 @@ class BibleReaderScreen extends ConsumerWidget{
 }
 
 
-/*
- [
-            ...book.keys.map( (value)=>ListView(
-              children: [
-                ...bible.getChapter(book: book, chapter: int.parse(value) )
-                    .values.map( (verse) => 
-                    ListTile( 
-                      contentPadding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                      title: Text(verse), 
-                      onTap: (){},) ),
-                const SizedBox(height: 20,)
-              ],
-            ))
-             
-          ],*/
