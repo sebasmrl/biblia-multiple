@@ -53,6 +53,7 @@ class BibleIO{
   static Future<String> readFileAsString({String path="assets/base", required String filename, required String ext})async{
       //final file = File('$path/$filename.$ext');
       //final string = file.readAsStringSync();
+      //TODO: Implement path_provider with dart:io for all platforms available
     final String response = await rootBundle .loadString('$path/$filename.$ext');
     return response;
   }

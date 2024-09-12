@@ -1,21 +1,32 @@
 
 
-
-
-
 import 'package:biblia_multiple/domain/entities/bible_options_selected.dart';
+import 'package:biblia_multiple/providers/bible_provider.dart';
+import 'package:biblia_multiple/shared/bible_versions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+
+
 
 final bibleOptionsSelectedNotifierProvider = 
   StateNotifierProvider<BibleOptionsSelectedProvider, BibleOptionsSelected>(
-    (ref) => BibleOptionsSelectedProvider() 
+    (ref) => BibleOptionsSelectedProvider(ref) 
   );
 
 
 class BibleOptionsSelectedProvider extends StateNotifier<BibleOptionsSelected>{
+  final Ref ref;
 
-  BibleOptionsSelectedProvider() :super(BibleOptionsSelected());
+   BibleOptionsSelectedProvider(this.ref) :super( const BibleOptionsSelected()){
+      final String acronym = ref.read(bibleNotifierProvider).acronym;
+      final index = bibleVersions.indexWhere( (bibleItem)=> bibleItem.acronym ==acronym );
+
+      changeBibleVersionSelected(version: bibleVersions[index].enumValue);
+   }
   
+
+  
+
   
   void changeBook(String  book){
     if(book.isEmpty)return;
@@ -36,6 +47,10 @@ class BibleOptionsSelectedProvider extends StateNotifier<BibleOptionsSelected>{
   
   void selectOldTestament(){
     state = state.copyWith( newTestamentSelected: false);
+  }
+
+  void changeBibleVersionSelected({required BiblesEnum version})async {
+    state = state.copyWith( versionSelected: version);
   }
 
 }

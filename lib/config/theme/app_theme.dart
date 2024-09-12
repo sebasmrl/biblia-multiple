@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppTheme{
 
@@ -15,7 +16,9 @@ class AppTheme{
 
 
   ThemeData getTheme(){
-    //final  background = ;
+
+
+   
     return ThemeData(
       useMaterial3: true,
       scaffoldBackgroundColor: isDarkMode ? const Color.fromARGB(255, 19, 19, 34): Colors.white,

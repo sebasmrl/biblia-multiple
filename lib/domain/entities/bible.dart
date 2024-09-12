@@ -1,17 +1,18 @@
 class Bible{
 
-  final String version, sigle;
+  final String version;
+  final String acronym;
   final bool isEmpty;
       //{ "genesis": { "1" :{ "1" : "versiculoText"  }}
   final Map<String, dynamic> books;  //Map<String,  Map<String,  Map< String, String> >>
 
-  const Bible({required this.version , required this.sigle, required this.books, this.isEmpty=true });
+  const Bible({required this.version , required this.acronym, required this.books, this.isEmpty=true });
 
   //This replace copyWith
   factory Bible.fromJson( Map<String, dynamic> json ){
     return Bible(
       version: json["version"],
-      sigle: json["sigla"],
+      acronym: json["sigla"],
       books: json["libros"],
       isEmpty: false,
     );
@@ -36,8 +37,8 @@ class Bible{
     if(bookName.isEmpty) return {};
     if(books.isEmpty) return {};
 
-     final book = books[bookName] ;
-     return book!;
+    final book = books[bookName];
+    return book!;
   }
 
   //{ "vesiculo1": "texto versiculo" }
@@ -46,7 +47,8 @@ class Bible{
     if(chapter < 1 || chapter > book.length ) chapter = 1;
 
     final  Map<String, dynamic>? chapterMap = book["$chapter"];
-     chapterMap?.removeWhere((key, value) =>  (value == "" || value ==" ") ? true: false );
+     //causa inconsistencias de .length en this.getBook(). Se debe presentar UI condicionalmente getverse().trim().isEmpty() 
+     //chapterMap?.removeWhere((key, value) =>  (value == "" || value ==" ") ? true: false ); 
     return chapterMap!;
   }
 

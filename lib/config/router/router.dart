@@ -17,5 +17,10 @@ final appRouter =  GoRouter(
       name: ColorSelectorScreen.name,
       builder: (context, state) => const ColorSelectorScreen(),
     ),
+    GoRoute(
+      path: '/bible-version-selector',
+      name: BibleVersionChooseScreen.name,
+      builder: (context, state) => const BibleVersionChooseScreen(),
+    ),
   ]
 );

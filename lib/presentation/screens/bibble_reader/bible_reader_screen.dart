@@ -1,9 +1,11 @@
 
+import 'package:biblia_multiple/presentation/screens/bible_version_choose/bible_version_choose_screen.dart';
 import 'package:biblia_multiple/presentation/widgets/side_menu_bible.dart';
 import 'package:biblia_multiple/providers/bible_options_selected_provider.dart';
 import 'package:biblia_multiple/providers/bible_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 
 class BibleReaderScreen extends ConsumerWidget{
@@ -32,9 +34,17 @@ class BibleReaderScreen extends ConsumerWidget{
         length: book.length,
         child: Scaffold(
             key: scaffoldKey,
-             drawer: SideMenuBible(scaffoldkey: scaffoldKey),
+            drawer: SideMenuBible(scaffoldkey: scaffoldKey),
             appBar: AppBar(
               title:  Text(options.book),
+              actions: [ 
+                TextButton.icon(
+                  label: Text(bible.acronym),
+                  onPressed: (){
+                  context.pushNamed(BibleVersionChooseScreen.name);
+                }, 
+                icon: const Icon(Icons.bookmark_rounded))
+              ],
               bottom:  TabBar(
                 isScrollable: true,
                 tabAlignment: TabAlignment.center,
@@ -42,7 +52,6 @@ class BibleReaderScreen extends ConsumerWidget{
                 padding: EdgeInsets.zero, 
                 labelPadding: const EdgeInsets.only(right: 20, left: 20),
                 indicatorWeight: 1,
-                
                 
                 tabs: [
                   ...book.keys.map( (value)=> Tab(
@@ -57,11 +66,11 @@ class BibleReaderScreen extends ConsumerWidget{
             
             body: TabBarView(
               children: [
-                ...book.keys.map( (value)=>ListView.builder(
-                  itemBuilder: (context, index){
+                ...book.keys.map( (value)=>ListView.builder( //map de capitulos
+                  itemBuilder: (context, index){ //map de versiculos 
                    final verse =  bible.getCite(bookName: options.book, chapterIndex:int.parse(value), verseIndex:index+1);
           
-                    if(verse.isEmpty) return  SizedBox(height: (index == book[value].length) ? 100 :0);
+                    if(verse.isEmpty) return  SizedBox(height: (index == book[value].length) ? 100 :0); //para versiculos vacios
                     return ListTile(
                       title: Text(' ${index+1}.$verse', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),),
                       contentPadding: EdgeInsets.fromLTRB(15, 3, 15, (index == book[value].length) ? 130:0),
