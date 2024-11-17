@@ -6,8 +6,6 @@ import 'package:biblia_multiple/shared/bible_versions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
-
-
 final bibleOptionsSelectedNotifierProvider = 
   StateNotifierProvider<BibleOptionsSelectedProvider, BibleOptionsSelected>(
     (ref) => BibleOptionsSelectedProvider(ref) 

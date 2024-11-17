@@ -1,4 +1,4 @@
-import 'package:animate_do/animate_do.dart';
+
 import 'package:biblia_multiple/providers/bible_options_selected_provider.dart';
 import 'package:biblia_multiple/providers/bible_provider.dart';
 import 'package:flutter/material.dart';
@@ -12,14 +12,22 @@ class BibleChapterView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final options = ref.watch(bibleOptionsSelectedNotifierProvider);
+   
+
     final bible = ref.watch(bibleNotifierProvider);
     final book = bible.getBook(options.book);
+    
 
 
     final scrollController = ItemScrollController();
+
+
     // Ejecuta el scroll después de construir el widget
     WidgetsBinding.instance.addPostFrameCallback((_) {
-
+      print("fin de la vista del capitulo");
+      if(int.parse(chapterIndex) != options.chapter){
+        ref.read(bibleOptionsSelectedNotifierProvider.notifier).changeChapter(int.parse(chapterIndex));
+      }
       //ir a ubicacion especifica
       if (options.verse > 3) {
         scrollController.scrollTo(
@@ -31,6 +39,7 @@ class BibleChapterView extends ConsumerWidget {
           ref.read(bibleOptionsSelectedNotifierProvider.notifier).changeVerse(1);
         }
       }
+
     });
 
 
@@ -41,6 +50,9 @@ class BibleChapterView extends ConsumerWidget {
       itemScrollController: scrollController,
       itemBuilder: (context, index) {
         //map de versiculos
+
+        //print("builder versiuclos");
+        
 
         final verse = bible.getCite(
             bookName: options.book,
@@ -56,10 +68,10 @@ class BibleChapterView extends ConsumerWidget {
                   : 0); //para versiculos vacios
         }
         return ListTile(
-          title: FadeIn(child: Text(
+          title:  Text(
             ' ${index + 1}.$verse',
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-          )),
+          ),
           contentPadding: EdgeInsets.fromLTRB(
               15, 3, 15, (index == book[chapterIndex].length) ? 130 : 0),
           visualDensity: const VisualDensity(vertical: -4),
@@ -73,6 +85,7 @@ class BibleChapterView extends ConsumerWidget {
         );
       },
       itemCount: book[chapterIndex].length,
+
     );
   }
 }

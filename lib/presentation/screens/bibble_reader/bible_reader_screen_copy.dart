@@ -93,12 +93,12 @@ class BibleReaderScreen extends ConsumerWidget{
 
                    
                    //final  renderBoxLista= context.findRenderObject();
-                    final pt = scrollController;//posiicion del ultimo elemento que se alcanza a ver
-                    final pt2 = scrollController.positions.first.pixels;
+                   // final pt = scrollController;//posiicion del ultimo elemento que se alcanza a ver
+                    //final pt2 = scrollController.positions.first.pixels;
                    // print("pt-1 $pt || pt2: $pt2");
                    // final offset = scrollController.offset;
                        // print("position enCreacion::$pt |||||---- $offset");
-                    print("Versiculo creado --- se esperan ${book[value].length} impresiones");
+                    //print("Versiculo creado --- se esperan ${book[value].length} impresiones");
 
                   
                     if(verse.trim().isEmpty) return  SizedBox(height: (index == book[value].length) ? 100 :0); //para versiculos vacios

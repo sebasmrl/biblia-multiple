@@ -16,7 +16,7 @@ class BibleReaderScreen extends ConsumerWidget {
   BibleReaderScreen({super.key});
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  //final TabController tabController;
+  //final TabController tabController;P
   
 
   @override
@@ -72,9 +72,11 @@ class BibleReaderScreen extends ConsumerWidget {
             
             body: TabBarView(
               children: [
-                ...book.keys.map( (value){
-                  return BibleChapterView(value);
-                }), 
+                 ...book.keys.map( (value){
+                  return 
+                   BibleChapterView(value)
+                   ;
+                }),
               ],
             ),
           ),

@@ -49,7 +49,7 @@ class BibleIO{
   }
 
 
-
+  
   static Future<String> readFileAsString({String path="assets/base", required String filename, required String ext})async{
       //TODO: Implement path_provider with dart:io for all platforms available
 
