@@ -84,10 +84,10 @@ void _goToRouteFromIndex(int indexPage, BuildContext context) {
       context.push('/bible-reader');
       break;
     case 2:
-      context.push('/bible-version-selector');
+      context.push('/color-selector');
       break;
     case 3:
-      context.push('/color-selector');
+      context.push('/search-screen');
       break;
     default:
       break;
@@ -107,7 +107,7 @@ int _goToIndexFromRoute(BuildContext context) {
     case '/bible-version-selector':
       index = 2;
       break;
-    case '':
+    case '/search-screen':
       index = 3;
       break;
     default:

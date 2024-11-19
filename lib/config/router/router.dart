@@ -1,4 +1,5 @@
 import 'package:biblia_multiple/presentation/screens/screens.dart';
+import 'package:biblia_multiple/presentation/screens/search/search_screen.dart';
 import 'package:biblia_multiple/presentation/screens/shell_screen/shell_screen.dart';
 import 'package:biblia_multiple/providers/references/global_keys.dart';
 import 'package:go_router/go_router.dart';
@@ -21,6 +22,11 @@ final appRouter =
                 path: '/bible-reader',
                 name: BibleReaderScreen.name,
                 builder: (context, state) => BibleReaderScreen(),
+              ),
+              GoRoute(
+                path: '/search-screen',
+                name: SearchScreen.name,
+                builder: (context, state) => SearchScreen(),
               ),
               
           ]),
